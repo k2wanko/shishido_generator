@@ -23,16 +23,16 @@ function roundRect(ctx, x, y, w, h, r) {
 }
 
 var offset = {
-    x: 270,
-    y: 30
+    x: 400,
+    y: 40
 };
 var size = {
-    width: 365,
-    height: 300
+    width: 350,
+    height: 140
 };
 // 吹き出しの> position
 var fukidashi = {
-    x: offset.x + size.width + 100,
+    x: offset.x,
     y: offset.y + 140
 };
 function drawFukidashi(ctx) {
@@ -43,9 +43,9 @@ function drawFukidashi(ctx) {
     ctx.fillStyle = '#FFF';
     ctx.beginPath();
     roundRect(ctx, offset.x, offset.y, size.width, size.height, 12);
-    ctx.moveTo(fukidashi.x, fukidashi.y);
-    ctx.lineTo(offset.x + size.width, offset.y + 80);
-    ctx.lineTo(offset.x + size.width, offset.y + 120);
+    ctx.moveTo(fukidashi.x, fukidashi.y - 10);
+    ctx.lineTo(offset.x, offset.y + 70);
+    ctx.lineTo(offset.x - 30, offset.y + 180);
     ctx.closePath();
     ctx.fill();
 }
@@ -71,7 +71,7 @@ function wrapText(ctx, text) {
     ctx.fillText(line, x, y);
 }
 function draw(ctx, size, text) {
-    loadImage("./resources/yosuke_furukawa.jpg").then(function(image) {
+    loadImage("./resources/shishido.jpg").then(function(image) {
         ctx.clearRect(0, 0, size.width, size.height);
         ctx.drawImage(image, 0, 0, size.width, size.height);
         drawFukidashi(ctx);
@@ -81,8 +81,8 @@ function draw(ctx, size, text) {
 
 function main() {
     var canvasSize = {
-        width: 1280,
-        height: 640
+        width: 780,
+        height: 780
     };
     var textarea = document.querySelector("#js-textarea");
     textarea.addEventListener("input", function(event) {
@@ -97,7 +97,7 @@ function main() {
     canvas.addEventListener("click", function(event) {
         event.currentTarget.toBlob(function(blob) {
             var a = document.createElement("a");
-            a.download = "yosuke_furukawa.png";
+            a.download = "shishido.png";
             a.href = URL.createObjectURL(blob);
             a.click();
             URL.revokeObjectURL(blob);
